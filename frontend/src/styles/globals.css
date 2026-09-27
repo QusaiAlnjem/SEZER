@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
+
+:root { color-scheme: light; }
+
+html, body { height: 100%; }
+body {
+  background: #fafafa;
+  color: #0f172a;
+  font-family: 'Tajawal', 'Cairo', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Nice number rendering in RTL */
+.num {
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Utility */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition;
+}
+.btn-primary { @apply btn bg-brand text-white hover:bg-brand-dark active:scale-[.98]; }
+.btn-ghost   { @apply btn bg-white text-ink hover:bg-slate-50 border border-slate-200; }
+.btn-danger  { @apply btn bg-red-600 text-white hover:bg-red-700; }
+
+.card { @apply bg-white rounded-2xl shadow-card p-4 sm:p-5; }
+
+.input, .select, .textarea {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none
+         focus:border-brand focus:ring-2 focus:ring-brand/20;
+}
+.textarea { min-height: 88px; }
+.label { @apply block text-xs font-medium text-slate-600 mb-1.5; }
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+.badge-green  { @apply badge bg-emerald-100 text-emerald-800; }
+.badge-amber  { @apply badge bg-amber-100  text-amber-800; }
+.badge-red    { @apply badge bg-red-100    text-red-800; }
+.badge-slate  { @apply badge bg-slate-100  text-slate-800; }
+
+/* Scrollbar */
+.scroll-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: rgba(15,23,42,.15); border-radius: 999px; }

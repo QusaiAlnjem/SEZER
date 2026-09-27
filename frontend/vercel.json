@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "regions": ["fra1"],
+  "headers": [
+    { "source": "/manifest.json", "headers": [ { "key": "Cache-Control", "value": "public, max-age=3600" } ] },
+    { "source": "/sw.js",         "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" } ] }
+  ]
+}
