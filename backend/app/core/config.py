@@ -1,11 +1,20 @@
 from functools import lru_cache
 from typing import List
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     DATABASE_URL: str
+
+    @field_validator("DATABASE_URL")
+    @classmethod
+    def _normalize_database_url(cls, v: str) -> str:
+        # Some hosts (Heroku-style, some Neon/Render strings) hand out
+        # postgres:// URLs; SQLAlchemy 2.0 only recognizes postgresql://.
+        if v.startswith("postgres://"):
+            v = "postgresql://" + v[len("postgres://"):]
+        return v
     JWT_SECRET: str = "change-me"
     JWT_ALG: str = "HS256"
     JWT_TTL_HOURS: int = 24    # a day, then the PIN is asked for again
