@@ -1,4 +1,4 @@
-from app.schemas.auth import LoginIn, TokenOut, ChangePinIn
+from app.schemas.auth import LoginIn, TokenOut
 from app.schemas.customer import CustomerIn, CustomerOut, CustomerBalance
 from app.schemas.supplier import (
     SupplierIn, SupplierOut,
@@ -31,7 +31,7 @@ from app.schemas.fx import FxIn, FxOut
 from app.schemas.dashboard import DashboardOut, SeriesPoint, ProductSales, CustomerBrief
 
 __all__ = [
-    "LoginIn", "TokenOut", "ChangePinIn",
+    "LoginIn", "TokenOut",
     "CustomerIn", "CustomerOut", "CustomerBalance",
     "SupplierIn", "SupplierOut",
     "SupplierOrderIn", "SupplierOrderOut", "OrderProductIn", "OrderProductOut", "OrderPage",

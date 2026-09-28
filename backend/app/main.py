@@ -2,8 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.database import SessionLocal
-from app.services.auth import ensure_owner_seeded
 from app.routers import auth, creditors, suppliers, storage, dashboard, expenses, fx
 
 app = FastAPI(title="SEZER API", version="1.0.0")
@@ -23,15 +21,6 @@ app.include_router(suppliers.router)
 app.include_router(storage.router)
 app.include_router(expenses.router)
 app.include_router(fx.router)
-
-
-@app.on_event("startup")
-def on_startup():
-    with SessionLocal() as db:
-        try:
-            ensure_owner_seeded(db)
-        except Exception:  # pragma: no cover
-            pass
 
 
 @app.get("/api/health")
